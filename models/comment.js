@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const CommentSchema = new Schema({
   created_at: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   post_id: {
     type: Schema.Types.ObjectId,

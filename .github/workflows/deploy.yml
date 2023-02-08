@@ -1,0 +1,30 @@
+name: CICD for redditclone_graphql_server
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+              cd apps/redditclone_graphql_server/
+              git pull origin main
+              docker kill reddit_graphql
+              docker rm reddit_graphql
+              docker rmi reddit_graphql
+              docker-compose up -d
+              yes | docker image prune

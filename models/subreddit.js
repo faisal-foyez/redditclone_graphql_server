@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const SubredditSchema = new Schema({
   created_at: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   topic: String,
 

@@ -170,6 +170,7 @@ module.exports = {
       return subreddit;
     },
     async comments(root, __, { Comment }) {
+      console.log(root);
       const comments = (await Comment.find({ post_id: root._id }).sort({ created_at: -1 }));
       return comments;
     },
