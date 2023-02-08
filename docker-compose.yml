@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    build: .
+    tty: true
+    stdin_open: true
+    image: reddit_graphql
+    container_name: reddit_graphql
+    # volumes:
+    #   - type: bind
+    #     source: /home/faisal/uploads
+    #     target: /home/node/sharp_shopping_assistant_api/uploads
+    #   - type: bind
+    #     source: /home/faisal/sharpshoppingicons
+    #     target: /home/node/sharp_shopping_assistant_api/sharpshoppingicons
+    ports:
+      - "4000:4000"
